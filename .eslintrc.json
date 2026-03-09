@@ -1,0 +1,17 @@
+{
+    "extends": [
+        "@rocketseat/eslint-config/node"
+    ],
+    "plugins": [
+        "vitest-globals"
+    ],
+    "parserOptions": {
+        "warnOnUnsupportedTypeScriptVersion": false
+    },
+    "rules": {
+        "no-useless-constructor": "off"
+    },
+    "env": {
+        "vitest-globals/env": true
+    }
+}

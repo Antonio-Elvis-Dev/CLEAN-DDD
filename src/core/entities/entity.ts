@@ -1,0 +1,17 @@
+import { UniqueEntityID } from './unique-entity-id.js'
+
+export class Entity<Props> {
+  // parametro de tipagem <T>// <Props>
+  private _id: UniqueEntityID
+
+  protected props: Props
+
+  get id() {
+    return this._id
+  }
+
+  protected constructor(props: Props, id?: UniqueEntityID) {
+    this.props = props
+    this._id = id ?? new UniqueEntityID()
+  }
+}
