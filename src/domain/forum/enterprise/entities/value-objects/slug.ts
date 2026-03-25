@@ -5,6 +5,9 @@ export class Slug {
     this.value = value
   }
 
+  static create(slug: string) {
+    return new Slug(slug)
+  }
   /**
    * Receive a string and normalize it as a slug
    * Example: "An example title" =:"an-example-title"
