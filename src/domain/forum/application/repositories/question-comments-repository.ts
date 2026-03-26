@@ -1,0 +1,10 @@
+import type { PaginationParams } from "@/core/repositories/pagination-params";
+import type { Question } from "../../enterprise/entities/question";
+import type { QuestionComment } from "../../enterprise/entities/question-comment";
+
+export interface QuestionCommentsRepository {
+    
+    create(questionComment: QuestionComment): Promise<void>
+    delete(questionComment: QuestionComment): Promise<void>
+
+}

@@ -2,21 +2,21 @@ import type { AnswersRepository } from "../repositories/answers-repository";
 import type { Answer } from "../../enterprise/entities/answer";
 
 
-interface FetchQuestionAnswerUseCaseRequest {
+interface FetchQuestionAnswersUseCaseRequest {
     questionId: string
     page: number
 }
-interface FetchQuestionAnswerUseCaseResponse {
+interface FetchQuestionAnswersUseCaseResponse {
     answers: Answer[]
 }
 
-export class FetchQuestionAnswerUseCase {
+export class FetchQuestionAnswersUseCase {
     constructor(private answerRepository: AnswersRepository) { }
 
     async execute({
         questionId,
         page
-    }: FetchQuestionAnswerUseCaseRequest): Promise<FetchQuestionAnswerUseCaseResponse> {
+    }: FetchQuestionAnswersUseCaseRequest): Promise<FetchQuestionAnswersUseCaseResponse> {
         const answers = await this.answerRepository.findManyQuestionId(questionId,{page})
 
         if (!answers) {
