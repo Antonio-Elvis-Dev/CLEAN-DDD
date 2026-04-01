@@ -17,7 +17,7 @@ export class FetchQuestionAnswersUseCase {
         questionId,
         page
     }: FetchQuestionAnswersUseCaseRequest): Promise<FetchQuestionAnswersUseCaseResponse> {
-        const answers = await this.answerRepository.findManyQuestionId(questionId,{page})
+        const answers = await this.answerRepository.findManyByQuestionId(questionId,{page})
 
         if (!answers) {
             throw new Error('Question not found.')

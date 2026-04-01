@@ -14,7 +14,7 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "@faker-js/faker": "^10.3.0",
+    "@faker-js/faker": "^10.4.0",
     "@rocketseat/eslint-config": "^2.2.2",
     "@types/node": "^25.3.0",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
@@ -22,10 +22,10 @@
     "eslint": "^8.57.1",
     "eslint-plugin-vitest-globals": "^1.5.0",
     "typescript": "^5.9.3",
-    "vite-tsconfig-paths": "^6.1.1"
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.0.18"
   },
   "dependencies": {
-    "dayjs": "^1.11.19",
-    "vitest": "^4.0.18"
+    "dayjs": "^1.11.19"
   }
 }

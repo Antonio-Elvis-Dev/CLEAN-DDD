@@ -1,7 +1,17 @@
-import type { UniqueEntityID } from "@/core/entities/unique-entity-id";
-import type { AnswerProps } from "@/domain/forum/enterprise/entities/answer";
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
+import { AnswerComment, type AnswerCommentProps } from "@/domain/forum/enterprise/entities/answer-comment";
+import { faker } from "@faker-js/faker"; 
 
-export function makeAnswer(
-    override: Partial<AnswerProps> = {},
+export function makeAnswerComment(
+    override: Partial<AnswerCommentProps> = {},
     id?: UniqueEntityID
-) {}
+) {
+    const answerComment = AnswerComment.create({
+        authorId: new UniqueEntityID(),
+        answerId: new UniqueEntityID(),
+        content: faker.lorem.text(),
+        ...override
+    }, id)
+
+    return answerComment
+}
