@@ -1,13 +1,30 @@
-import { left, right } from "./either"
+import { left, right, type Either } from "./either"
+
+
+function doSommething(shouldSuccess: boolean): Either<string, number> {
+    if (shouldSuccess) {
+        return right(10)
+    } else {
+
+        return left('error')
+    }
+}
 
 test('success result', () => {
-    const success = right(`success`)
+    const result = doSommething(true)
 
-    expect(success.value).toEqual(`success`)
+
+    if (result.isRight()) {
+        console.log(result.value)
+    }
+
+    expect(result.isRight()).toBe(true)
+    expect(result.isLeft()).toBe(false)
 })
 
 test('error result', () => {
-    const error = left(`error`)
+    const result = doSommething(false)
 
-    expect(error.value).toEqual(`error`)
+    expect(result.isRight()).toBe(false)
+    expect(result.isLeft()).toBe(true)
 })

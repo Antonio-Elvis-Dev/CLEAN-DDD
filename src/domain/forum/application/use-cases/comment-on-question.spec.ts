@@ -2,8 +2,10 @@ import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questio
 import { makeQuestion } from 'test/factories/make-question'
 import { InMemoryQuestionCommentsRepository } from 'test/repositories/in-memory-question-comment-repository';
 import { CommentonQuestionUseCase } from './comment-on-question';
+import { InMemoryQuestionAttachmentsRepository } from 'test/repositories/in-memory-question-attachments-repository';
 
 
+let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository
 let sut: CommentonQuestionUseCase
@@ -12,21 +14,22 @@ let sut: CommentonQuestionUseCase
 describe('Comment on Question', () => {
 
     beforeEach(() => {
-        inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
+        inMemoryQuestionAttachmentsRepository = new InMemoryQuestionAttachmentsRepository()
+        inMemoryQuestionsRepository = new InMemoryQuestionsRepository(inMemoryQuestionAttachmentsRepository)
         inMemoryQuestionCommentsRepository = new InMemoryQuestionCommentsRepository()
-        sut = new CommentonQuestionUseCase(inMemoryQuestionsRepository,inMemoryQuestionCommentsRepository)
+        sut = new CommentonQuestionUseCase(inMemoryQuestionsRepository, inMemoryQuestionCommentsRepository)
     })
 
     it('should be able to comment on question', async () => {
 
         const question = makeQuestion()
-              
+
         await inMemoryQuestionsRepository.create(question)
 
         await sut.execute({
             questionId: question.id.toString(),
             authorId: question.authorId.toString(),
-             content:'Test comment'
+            content: 'Test comment'
         })
 
         expect(inMemoryQuestionCommentsRepository.items[0]?.content).toEqual('Test comment')
